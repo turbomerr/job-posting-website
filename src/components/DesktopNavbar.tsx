@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ModeToggle } from "./ModeToggle"
+
 import { Button } from "./ui/button"
 import { Search, CirclePlus, Settings, User } from "lucide-react"
 
