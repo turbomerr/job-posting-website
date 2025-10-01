@@ -11,6 +11,7 @@ import {
     SheetHeader,
     SheetTitle,
     SheetTrigger,
+    SheetClose
 } from "@/components/ui/sheet"
 import { Button } from "./ui/button"
 import { useState } from 'react';
@@ -31,39 +32,49 @@ function MobileNavbar() {
                         <SheetTitle>Menu</SheetTitle>
                     </SheetHeader>
                     <nav className='flex flex-col space-y-4 mt-6 '>
-                        <Button variant="ghost" className='flex items-center text-md justify-start' asChild>
-                            <Link href="/">
-                                <BriefcaseBusiness className="h-5 w-5" />
-                                <span className="px-2">Home</span>
-                            </Link>
-                        </Button>
-                        <Button variant="ghost" className='flex items-center text-md justify-start' asChild>
-                            <Link href="/jobs">
-                                <Search className="h-5 w-5" />
-                                Browse a Job
-                            </Link>
-                        </Button>
+                        <SheetClose asChild>
+                            <Button variant="ghost" className='flex items-center text-md justify-start' asChild>
+                                <Link href="/">
+                                    <BriefcaseBusiness className="h-5 w-5" />
+                                    <span className="px-2">Home</span>
+                                </Link>
+                            </Button>
+                        </SheetClose>
+                        <SheetClose asChild>
+                            <Button variant="ghost" className='flex items-center text-md justify-start' asChild>
+                                <Link href="/jobs">
+                                    <Search className="h-5 w-5" />
+                                    Browse a Job
+                                </Link>
+                            </Button>
+                        </SheetClose>
 
-                        <Button variant="ghost" className='flex items-center text-md justify-start' asChild>
-                            <Link href="/jobs/post">
-                                <CirclePlus className="w-5 h-5" />
-                                Post a Job
-                            </Link>
-                        </Button>
+                        <SheetClose asChild>
+                            <Button variant="ghost" className='flex items-center text-md justify-start' asChild>
+                                <Link href="/jobs/post">
+                                    <CirclePlus className="w-5 h-5" />
+                                    Post a Job
+                                </Link>
+                            </Button>
+                        </SheetClose>
 
-                        <Button variant="ghost" className='flex items-center text-md justify-start' asChild>
-                            <Link href="/dashboard">
-                                <Settings className="w-5 h-5" />
-                                Dashboard
-                            </Link>
-                        </Button>
+                        <SheetClose asChild>
+                            <Button variant="ghost" className='flex items-center text-md justify-start' asChild>
+                                <Link href="/dashboard">
+                                    <Settings className="w-5 h-5" />
+                                    Dashboard
+                                </Link>
+                            </Button>
+                        </SheetClose>
 
-                        <Button variant="ghost" className='flex items-center text-md justify-start' asChild>
-                            <Link href="/auth/signin">
-                                <User className="w-5 h-5" />
-                                Sign In
-                            </Link>
-                        </Button>
+                        <SheetClose asChild>
+                            <Button variant="ghost" className='flex items-center text-md justify-start' asChild>
+                                <Link href="/auth/signin">
+                                    <User className="w-5 h-5" />
+                                    Sign In
+                                </Link>
+                            </Button>
+                        </SheetClose>
                     </nav>
                 </SheetContent>
             </Sheet>
