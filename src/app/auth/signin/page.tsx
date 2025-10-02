@@ -1,3 +1,4 @@
+"use client"
 import {
     Card,
     CardAction,
@@ -11,7 +12,11 @@ import { Button } from "@/components/ui/button"
 import { Github } from "lucide-react";
 import Link from "next/link";
 
+import { signIn } from "next-auth/react"
+
+
 function SignInPage() {
+
     return (
 
         <div className="flex justify-center items-center min-h-[calc(100vh-20rem)]"> 
@@ -22,9 +27,11 @@ function SignInPage() {
             </CardHeader>
             <CardContent className="space-y-4">
                 <Button
+                    onClick={() => signIn("github", {callbackUrl : "/dashboard"})}
                     variant="outline"
                     size="lg"
-                    className="w-full justify-center gap-2" >
+                    className="w-full justify-center gap-2"
+                    >
                     <Github className="h-5 w-5" />
                     Continue with GitHub
                 </Button>
