@@ -27,3 +27,13 @@ export const POST = async(req: Request) => {
         
     
 }
+
+export const GET = async(req : Request) => {
+
+    try {
+        const jobs = await prisma.job.findMany({orderBy : {postedAt : "desc"}});
+        return NextResponse.json(jobs)
+    } catch (error) {
+        console.log(error)
+    }
+}
