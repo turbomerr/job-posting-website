@@ -1,3 +1,5 @@
+"use client"
+
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -11,17 +13,18 @@ import {
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
-import { FormEvent } from "react"
+import { FormEvent, useState } from "react"
 import { title } from "node:process"
 
 function page() {
+
+    const [jobType, setJobType] =   useState("")
 
     const handleSubmit = async(e : FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const data = {
             title : formData.get("title"),
-            email : formData.get("email"),
             company : formData.get("company"),
             location : formData.get("location"),
             type : formData.get("type"),
@@ -29,25 +32,33 @@ function page() {
             salary : formData.get("salary"),
 
         }
+
+        try {
+            const res= await fetch("/api/jobs", {
+                method : "POST",
+                headers: {
+                    "Content-Type" : "application/json",
+                },
+                body :JSON.stringify(data)
+            })
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
-        <div >
+        
 
-            <form className="mx-auto max-w-3xl space-y-6">
+            <form className="mx-auto max-w-3xl space-y-6" onSubmit={handleSubmit}>
                 <h1 className="text-2xl font-bold">Post a Job</h1>
 
                 <div className="grid w-full items-center gap-3">
                     <Label htmlFor="title">Title</Label>
-                    <Input type="text" name="titel" placeholder="Title" required/>
+                    <Input type="text" name="title" placeholder="Title" required/>
                 </div>
 
-                <div className="grid w-full items-center gap-3">
-                    <Label htmlFor="email">Email</Label>
-                    <Input type="email" name="email" placeholder="Email" required/>
-                </div>
-
-
+        
                 <div className="grid w-full items-center gap-3">
                     <Label htmlFor="company">Company</Label>
                     <Input type="text" name="company" placeholder="Company" required/>
@@ -58,8 +69,9 @@ function page() {
                     <Input type="text" name="location" placeholder="Location" required/>
                 </div>
 
-                <Select name="type" required>
-                    <Label htmlFor="jobtype">Job Type</Label>
+                <div className="grid w-full items-center gap-3"> 
+                    <Select name="type" value={jobType} onValueChange={setJobType}>
+                    <Label>Job Type</Label>
                     <SelectTrigger className="w-[180px]">
 
                         <SelectValue placeholder="Select a type" />
@@ -75,6 +87,8 @@ function page() {
                         </SelectGroup>
                     </SelectContent>
                 </Select>
+                 <input type="hidden" name="type" value={jobType} />
+                </div>
 
                 <div className="grid w-full gap-3">
                     <Label htmlFor="description">Description</Label>
@@ -88,7 +102,7 @@ function page() {
                 </div>
                 <Button variant="ghost" type="submit" className="w-full border border-blue-500">Post Job</Button>
             </form>
-        </div>
+        
     )
 }
 
