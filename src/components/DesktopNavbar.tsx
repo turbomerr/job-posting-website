@@ -10,7 +10,7 @@ import { signOut } from "next-auth/react"
 function DesktopNavbar() {
 
     const { data: session } = useSession()
-    console.log(session)
+    //console.log(session)
 
     return (
         <div className="hidden md:flex items-center space-x-4">

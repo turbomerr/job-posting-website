@@ -7,8 +7,7 @@ export const POST = async(req: Request) => {
         const session = await auth(); // auth.ts
         if(!session?.user || !session?.user.id){ //if session.user not exist, redirect to /auth/signin
             return NextResponse.redirect(new URL("/auth/signin", req.url))
-        }
-
+         }
         try {
 
             const data = await req.json()// from client application/json
