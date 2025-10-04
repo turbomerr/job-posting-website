@@ -14,7 +14,7 @@ import { MapPin } from 'lucide-react'
 
 const page = async () => {
 
-    const jobs = await prisma.job.findMany({orderBy : {postedAt : "desc"}});
+    const jobs = await prisma.job.findMany({orderBy : {postedAt : "desc"}, include : {postedBy : true},});
 
     return (
         <div className="mx-auto">
@@ -40,10 +40,13 @@ const page = async () => {
                             <p>{job.description}</p>
                         </CardContent>
                         <CardFooter className="mt-auto flex items-center justify-between">
-                                <Badge className="text-md" variant="outline">{job.type}</Badge>
+                                <div>
+                                    <Badge className="text-md" variant="outline">Posted by {job.postedBy.name}</Badge>
+                                    <Badge className="text-md" variant="outline">{job.type}</Badge>
+                                </div>
                                 <Button className="" variant="outline">Apply</Button>
-                            
                         </CardFooter>
+
 
 
                     </Card>
