@@ -86,12 +86,12 @@ function page() {
                     </SelectTrigger>
                     <SelectContent>
                         <SelectGroup>
-                            <SelectLabel>Jobs</SelectLabel>
-                            <SelectItem value="it">IT</SelectItem>
-                            <SelectItem value="webdev">Web Developer</SelectItem>
-                            <SelectItem value="backend">Backend Developer</SelectItem>
-                            <SelectItem value="frontend">Frontend Developer</SelectItem>
-                            <SelectItem value="fullstack">Fullstack Developer</SelectItem>
+                            <SelectLabel>Type</SelectLabel>
+                            <SelectItem value="full-time">Full-time</SelectItem>
+                            <SelectItem value="part-time">Part-time</SelectItem>
+                            <SelectItem value="freelance">Freelance</SelectItem>
+                            <SelectItem value="internship">Internship</SelectItem>
+                            <SelectItem value="volunteer">Volunteer</SelectItem>
                         </SelectGroup>
                     </SelectContent>
                 </Select>
