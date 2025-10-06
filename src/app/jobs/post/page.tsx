@@ -78,7 +78,7 @@ function page() {
             </div>
 
             <div className="grid w-full items-center gap-3">
-                <Select name="type" value={jobType} onValueChange={setJobType}>
+                <Select value={jobType} onValueChange={setJobType}>
                     <Label>Job Type</Label>
                     <SelectTrigger className="w-[180px]">
 
