@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { formatDistanceToNow } from "date-fns";
+import { SessionProvider } from "next-auth/react"
 
 import {
     Card,
@@ -13,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { notFound } from "next/navigation";
 import Link from "next/link"
 import { MapPinned } from 'lucide-react';
+import ApplyButton from "@/components/ApplyButton";
 
 export default async function JobDetails({ params }: { params: Promise<{ id: string }> }) {
     const jobId = (await params).id;
@@ -55,9 +57,11 @@ export default async function JobDetails({ params }: { params: Promise<{ id: str
                         </CardDescription>
                     </CardContent>
 
-                <CardFooter>
-                    <Button className="w-full hover:border-indigo-500" variant="outline">Apply</Button>
-                </CardFooter>
+                    <CardFooter>
+                        <SessionProvider>
+                            <ApplyButton jobId={detailJob?.id} />
+                        </SessionProvider>
+                    </CardFooter>
 
                 </Card>
             </div>
