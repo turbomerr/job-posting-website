@@ -1,5 +1,7 @@
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma"
+import { ok } from "assert";
+import { error } from "console";
 import { NextResponse } from "next/server";
 
 
@@ -16,13 +18,13 @@ export async function POST(req: Request, { params }: { params: Promise<{ jobId: 
         const job = await prisma.job.findUnique({ where: { id: jobId } });
 
         if (!job) {
-            return new NextResponse("Job not found", { status: 404 })
+            return NextResponse.json({error :"Job not found"},{ status: 404 })
         }
 
         const existingApplication = await prisma.application.findFirst({ where: { jobId: jobId, userId: session.user.id } })
 
         if (existingApplication) {
-            return new NextResponse("You are already applied for this job", { status: 404 })
+            return  NextResponse.json({error : "You alredy applied for this job"}, {status : 409})
         }
 
         const applicaton = await prisma.application.create({
@@ -32,7 +34,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ jobId: 
                 status : "PENDING"
             }
         })
-        return NextResponse.json(applicaton)
+        return NextResponse.json({ok : true}, { status : 201})
 
     } catch (error) {
         console.log("Error creating job: ",error);

@@ -10,7 +10,6 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { Button } from "@/components/ui/button";
 import { notFound } from "next/navigation";
 import Link from "next/link"
 import { MapPinned } from 'lucide-react';

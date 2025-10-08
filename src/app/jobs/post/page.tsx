@@ -58,28 +58,28 @@ function page() {
     return (
 
 
-        <form className="mx-auto max-w-3xl space-y-6" onSubmit={handleSubmit}>
+        <form className="mx-auto max-w-5xl space-y-6" onSubmit={handleSubmit}>
             <h1 className="text-2xl font-bold">Post a Job</h1>
 
             <div className="grid w-full items-center gap-3">
-                <Label htmlFor="title">Title</Label>
+                <Label className="text-lg" htmlFor="title">Title</Label>
                 <Input type="text" name="title" placeholder="Title" required />
             </div>
 
 
             <div className="grid w-full items-center gap-3">
-                <Label htmlFor="company">Company</Label>
+                <Label className="text-lg" htmlFor="company">Company</Label>
                 <Input type="text" name="company" placeholder="Company" required />
             </div>
 
             <div className="grid w-full items-center gap-3">
-                <Label htmlFor="location">Location</Label>
+                <Label className="text-lg" htmlFor="location">Location</Label>
                 <Input type="text" name="location" placeholder="Location" required />
             </div>
 
             <div className="grid w-full items-center gap-3">
                 <Select value={jobType} onValueChange={setJobType}>
-                    <Label>Job Type</Label>
+                    <Label className="text-lg">Job Type</Label>
                     <SelectTrigger className="w-[180px]">
 
                         <SelectValue placeholder="Select a type" />
@@ -99,12 +99,12 @@ function page() {
             </div>
 
             <div className="grid w-full gap-3">
-                <Label htmlFor="description">Description</Label>
+                <Label className="text-lg" htmlFor="description">Description</Label>
                 <Textarea name="description" id="description" required />
             </div>
 
             <div className="grid w-full max-w-sm items-center gap-3">
-                <Label htmlFor="salary">Salary</Label>
+                <Label className="text-lg" htmlFor="salary">Salary</Label>
                 <Input type="number" name="salary" placeholder="Salary" />
 
             </div>
