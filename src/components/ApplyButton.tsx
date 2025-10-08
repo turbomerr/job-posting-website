@@ -8,6 +8,7 @@ import Link from "next/link"
 
 
 
+
 const ApplyButton = ({ jobId }: { jobId: string }) => {
 
 
@@ -31,6 +32,17 @@ const ApplyButton = ({ jobId }: { jobId: string }) => {
                 method: "POST",
             })
             setApplicationStatus("success")
+
+
+            if (!res.ok) {
+                // JSON bekle, değilse fallback
+                const data = await res.json().catch(() => ({}));
+                const message = data?.error || "Something went wrong.";
+                setApplicationStatus("error")
+                setErrorMessage(message)      
+                return;
+            }
+
         } catch (error) {
             if (error instanceof Error) {
                 setErrorMessage(error.message)
@@ -50,17 +62,20 @@ const ApplyButton = ({ jobId }: { jobId: string }) => {
 
     if (applicationStatus === "success") {
         return (
-        <div className="text-center">
-            <p className="text-shadow-emerald-600">Application submitted successfully</p><br />
-            <Link href={"/dashboard"}>View your application</Link>
-        </div>)
+            <div className="w-full text-center">
+                <p className="text-center text-green-800">Application submitted successfully!</p>
+                <Link className="w-full text-indigo-700 hover:text-indigo-500" href={"/dashboard"}>View your application</Link>
+            </div>)
     }
 
 
     return (
         <div className="w-full">
-            <Button onClick={handleApply} className="w-full hover:border-indigo-500" variant="outline">Apply for this position</Button>
-        </div>)
+            <Button onClick={handleApply} className="w-full hover:border-indigo-500" disabled={applicationStatus === "error"} variant="outline">Apply for this position</Button>
+            {applicationStatus === "error" && (<p className="mt-2 text-red-600 text-center">{errorMessage}</p>)}
+        </div>
+
+    )
 
 
 }
