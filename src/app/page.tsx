@@ -1,7 +1,16 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+
+  const session = await auth();
+
+   if (session?.user?.id) {
+      redirect("/dashboard")
+   }
+
   return (
     <main className="min-h-[calc(100vh-256px)] grid place-items-center px-4 sm:px-6 lg:px-8">
       <div className="max-w-xl text-center">

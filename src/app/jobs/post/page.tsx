@@ -18,7 +18,7 @@ import { LoadingButton } from "@/components/LoadingButton"
 
 
 
-function page() {
+function Page() {
 
     const [jobType, setJobType] = useState("")
     const [loading, setLoading] = useState(false)
@@ -117,4 +117,4 @@ function page() {
     )
 }
 
-export default page
+export default Page

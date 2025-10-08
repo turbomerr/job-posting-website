@@ -1,16 +1,13 @@
 "use client"
 import {
     Card,
-    CardAction,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Github } from "lucide-react";
-import Link from "next/link";
 
 import { signIn } from "next-auth/react"
 

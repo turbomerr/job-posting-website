@@ -27,14 +27,14 @@ export async function POST(req: Request, { params }: { params: Promise<{ jobId: 
             return  NextResponse.json({error : "You alredy applied for this job"}, {status : 409})
         }
 
-        const applicaton = await prisma.application.create({
+        const application = await prisma.application.create({
             data: {
                 jobId: jobId,
                 userId: session.user.id,
                 status : "PENDING"
             }
         })
-        return NextResponse.json({ok : true}, { status : 201})
+        return NextResponse.json({application})
 
     } catch (error) {
         console.log("Error creating job: ",error);
