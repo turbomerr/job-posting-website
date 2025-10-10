@@ -3,6 +3,7 @@
 Employers to create job posts
 Users to browse and view job listings
 Simple and responsive design built with Next.js
+Authentication with Github Provider
 
 🧩 Technologies Used
 
